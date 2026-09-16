@@ -9,6 +9,7 @@ ENV PYTHONUNBUFFERED=1 \
 RUN apt-get update && apt-get install -y --no-install-recommends \
         clamav \
         clamav-daemon \
+        clamav-freshclam \
         libgl1 \
         libglib2.0-0 \
         ca-certificates \
