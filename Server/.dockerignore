@@ -1,0 +1,13 @@
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.env
+.env.*
+!.env.example
+# Written into the image by `prisma py fetch` at build time; never copy a stale
+# host copy over it.
+.cache/
+.prisma-binaries/
+.pytest_cache/
+*.log
