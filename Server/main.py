@@ -4,6 +4,7 @@ from contextlib import asynccontextmanager
 from services.websocket_manager import manager
 from services.folder_monitor import folder_monitor
 from database import db
+from config import get_settings
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -17,7 +18,7 @@ app = FastAPI(title="Cyber Detection API", lifespan=lifespan)
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173", "http://localhost:3000"],
+    allow_origins=[o.strip() for o in get_settings().cors_origins.split(",") if o.strip()],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

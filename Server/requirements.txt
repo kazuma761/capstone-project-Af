@@ -13,7 +13,6 @@ prisma
 clamd
 Pillow
 stegano
-python-magic-bin
 pydantic[email]
 watchdog
 groq

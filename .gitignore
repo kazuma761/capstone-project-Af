@@ -1,0 +1,10 @@
+node_modules/
+dist/
+.env
+.env.local
+.venv/
+.myapp/
+__pycache__/
+*.pyc
+.DS_Store
+.vercel
