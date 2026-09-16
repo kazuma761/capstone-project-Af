@@ -9,6 +9,7 @@ import {
   FiCheckCircle,
   FiFile,
 } from "react-icons/fi";
+import { API_URL } from "../config";
 
 interface FileItem {
   name: string;
@@ -27,7 +28,8 @@ export default function Downloads() {
   const [loading, setLoading] = useState(true);
   const [scanning, setScanning] = useState<Set<string>>(new Set());
   const [scanningAll, setScanningAll] = useState(false);
-  const [scanProgress, setScanProgress] = useState({ current: 0, total: 0 });
+  // const [scanProgress, setScanProgress] = useState({ current: 0, total: 0 });
+  const [, setScanProgress] = useState({ current: 0, total: 0 });
 
   useWebSocket((message) => {
     if (message.type === "file_detected") {
@@ -97,7 +99,7 @@ export default function Downloads() {
 
   const loadFiles = async () => {
     try {
-      const response = await fetch("http://localhost:8000/api/downloads/list", {
+      const response = await fetch(`${API_URL}/api/downloads/list`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       const data = await response.json();
@@ -132,7 +134,7 @@ export default function Downloads() {
     );
 
     try {
-      const response = await fetch("http://localhost:8000/api/downloads/scan", {
+      const response = await fetch(`${API_URL}/api/downloads/scan`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

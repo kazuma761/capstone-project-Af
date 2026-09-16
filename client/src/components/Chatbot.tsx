@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import { FiMessageCircle, FiX, FiSend } from "react-icons/fi";
 import { useAuthStore } from "../store/authStore";
+import { API_URL } from "../config";
 
 interface Message {
   role: "user" | "assistant";
@@ -38,7 +39,7 @@ export default function Chatbot() {
     setLoading(true);
 
     try {
-      const response = await fetch("http://localhost:8000/api/chatbot/chat", {
+      const response = await fetch(`${API_URL}/api/chatbot/chat`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

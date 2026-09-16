@@ -1,16 +1,29 @@
-### Virtual environment activation (if not activated automatically)
+### Backend setup (first time)
 ```
-.myapp\Scripts\activate
+cd Server
+python -m venv .venv
+# Windows: .venv\Scripts\activate    macOS/Linux: source .venv/bin/activate
+pip install -r requirements.txt
+cp .env.example .env        # then fill in real values
+prisma generate
 ```
 
-### running the backend service
+### Running the backend service
 ```
-cd .\Server
+cd Server
 uvicorn main:app --reload
 ```
 
-### running the frontend service
+### Running the frontend service
 ```
-cd .\client
+cd client
+npm install
+cp .env.example .env        # optional; defaults to http://localhost:8000
 npm run dev
 ```
+
+### Deploying the frontend to Vercel
+Import the repo in Vercel and set **Root Directory** to `client`
+(settings come from `client/vercel.json`). Add the env var
+`VITE_API_URL=https://<your-backend-host>` and set the backend's
+`CORS_ORIGINS` to include your Vercel URL.

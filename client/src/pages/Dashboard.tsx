@@ -9,7 +9,9 @@ export default function Dashboard() {
   const navigate = useNavigate();
   const [scans, setScans] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
-  const [monitoringActive, setMonitoringActive] = useState(true);
+  // const [monitoringActive, setMonitoringActive] = useState(true);
+  const [, setMonitoringActive] = useState(true);
+  
   const [recentActivity, setRecentActivity] = useState<string[]>([]);
 
   useEffect(() => {
