@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback, useRef } from "react";
+import { WS_URL } from "../config";
 
 interface ProcessFeatures {
   fe: number;
@@ -45,11 +46,11 @@ export const useBehavioralMonitor = (
   const [lastUpdate, setLastUpdate] = useState<BehavioralUpdate | null>(null);
   const [alerts, setAlerts] = useState<BehavioralAlert[]>([]);
   const wsRef = useRef<WebSocket | null>(null);
-  const reconnectTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  // const reconnectTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const reconnectTimeoutRef = useRef<number | null>(null);
 
   const connect = useCallback(() => {
-    // @ts-ignore
-    const wsUrl = import.meta.env.VITE_WS_URL || "ws://localhost:8000";
+    const wsUrl = WS_URL;
     const clientId = `behavioral_${Date.now()}`;
 
     try {

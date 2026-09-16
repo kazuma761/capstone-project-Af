@@ -4,6 +4,7 @@ import ProcessTable from "../components/ProcessTable";
 import RiskGauge from "../components/RiskGauge";
 import ThreatTierBadge from "../components/ThreatTierBadge";
 import { behavioralAPI } from "../services/api";
+import { WS_URL } from "../config";
 
 interface Stats {
   is_running: boolean;
@@ -38,13 +39,14 @@ const BehavioralMonitor: React.FC = () => {
   const [processes, setProcesses] = useState<Process[]>([]);
   const [loading, setLoading] = useState(true);
   const [tierFilter, setTierFilter] = useState<string | null>(null);
-  const [scanProgress, setScanProgress] = useState<ScanProgress | null>(null);
-  const [recentAlerts, setRecentAlerts] = useState<Process[]>([]);
+  // const [scanProgress, setScanProgress] = useState<ScanProgress | null>(null);
+  const [, setScanProgress] = useState<ScanProgress | null>(null);
+  const [, setRecentAlerts] = useState<Process[]>([]);
   const wsRef = useRef<WebSocket | null>(null);
 
   // WebSocket connection for real-time updates
   useEffect(() => {
-    const wsUrl = "ws://localhost:8000";
+    const wsUrl = WS_URL;
     const clientId = `behavioral_${Date.now()}`;
 
     const connectWS = () => {
